@@ -6,7 +6,7 @@
 </h1>
 
 <p align="center">
-<b>A fully featured <a href="https://toggl.com/">Toggl</a> client for your PowerShell - based on <a href="https://github.com/toggl/toggl_api_docs/blob/master/toggl_api.md">Toggl's API v9</a></b>
+<b>A fully featured <a href="https://toggl.com/">Toggl</a> client for your PowerShell - based on <a href="https://developers.track.toggl.com/docs/index.html)">Toggl's API v9</a></b>
 </p>
 <p align="center">
     <a href="https://www.powershellgallery.com/packages/PSToggl">
