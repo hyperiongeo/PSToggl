@@ -2,7 +2,7 @@
   branches:
     only:
     - master
-  version: 1.3.{build}
+  version: 1.4.{build}
   configuration: Release
   skip_non_tags: true
   image: WMF 5
@@ -19,7 +19,7 @@
   notifications:
   - provider: Email
     to:
-    - buildNotification.clijsters@gmail.com
+    - hyperion.geo@gmail.com
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true
@@ -27,7 +27,7 @@
   branches:
     only:
     - develop
-  version: 1.3.{build}
+  version: 1.4.{build}
   configuration: Debug
   skip_non_tags: false
   image: WMF 5
@@ -39,7 +39,7 @@
   notifications:
   - provider: Email
     to:
-    - buildNotification.clijsters@gmail.com
+    - hyperion.geo@gmail.com
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true

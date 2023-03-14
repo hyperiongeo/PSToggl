@@ -109,10 +109,10 @@ function Get-TogglEntry() {
         #TODO Workspaces - not for current?
         if ($From) {
             $timeSpan = @{start_date = Get-Date -Date $From -Format o; end_date = Get-Date -Date $To -Format o}
-            $allEntries = Invoke-TogglMethod -UrlSuffix ("time_entries") -Method "GET" -InputObject $timeSpan
+            $allEntries = Invoke-TogglMethod -UrlSuffix ("me/time_entries") -Method "GET" -InputObject $timeSpan
         }
         else {
-            $allEntries = Invoke-TogglMethod -UrlSuffix ("time_entries" + $suffix) -Method "GET"
+            $allEntries = Invoke-TogglMethod -UrlSuffix ("me/time_entries" + $suffix) -Method "GET"
         }
         if ($Workspace) {
             #The Toggl API doesn't support obtaining time_entries per workspace (does it?)

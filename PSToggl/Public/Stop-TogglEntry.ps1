@@ -38,6 +38,9 @@ function Stop-TogglEntry() {
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
     param(
+         # Workspace id
+         [Parameter(Mandatory = $false)]
+         [string] $Workspace = $TogglConfiguration.User.Workspace
         <#
         # Workspace id
         [Parameter(Mandatory = $false)]
@@ -67,7 +70,7 @@ function Stop-TogglEntry() {
 
     if ($currentEntry) {
         Write-Verbose "Invoking Toggl Method to stop entry $($currentEntry.id)"
-        (Invoke-TogglMethod -UrlSuffix "time_entries/$($currentEntry.id)/stop" -Method "PUT").data | ConvertTo-TogglEntry
+        (Invoke-TogglMethod -UrlSuffix "workspaces/$($Workspace)/time_entries/$($currentEntry.id)/stop" -Method "PUT").data | ConvertTo-TogglEntry
     }
     else {
         Write-Verbose "currentEntry was null. Exiting."

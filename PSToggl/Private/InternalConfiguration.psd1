@@ -18,25 +18,29 @@
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
                 @{ name = "name"; required = $true; default = $null; type = [string]; },
-                @{ name = "wid"; required = $true; default = $null; type = [int]; },
+          #      @{ name = "wid"; required = $true; default = $null; type = [int]; },
                 @{ name = "notes"; required = $false; default = $null; type = [string]; },
-                @{ name = "at"; required = $true; default = $null; type = [datetime]; }
+                @{ name = "at"; required = $true; default = $null; type = [datetime]; },
+                @{ name = "workspace_id"; required = $true; default = $null; type = [int]; },
+                @{ name = "server_deleted_at"; required = $true; default = $null; type = [string]; },
+                @{ name = "archived"; required = $true; default = $null; type = [boolean]; }
             );
         };
 
         Group = @{
-            TypeName = "PSToggl.Group";
+            TypeName = "PSToggl.Group"; # TODO NEEDS QWORK
             DocUrl = "";
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
                 @{ name = "name"; required = $true; default = $null; type = [string]; },
                 @{ name = "wid"; required = $true; default = $null; type = [int]; },
-                @{ name = "at"; required = $true; default = $null; type = [datetime]; }
+                @{ name = "at"; required = $true; default = $null; type = [datetime]; },
+                @{ name = "organization_id"; required = $true; default = $null; type = [int]; }
             );
         };
 
         Project = @{
-            TypeName = "PSToggl.Project";
+            TypeName = "PSToggl.Project";# TODO NEEDS QWORK
             DocUrl = "";
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
@@ -52,7 +56,11 @@
                 @{ name = "estimated_hours"; required = $false; default = $null; type = [int]; }, # Pro
                 @{ name = "at"; required = $true; default = $null; type = [datetime]; },
                 @{ name = "color"; required = $true; default = $null; type = [int]; },
-                @{ name = "rate"; required = $false; default = $null; type = [float]; } # Pro
+                @{ name = "rate"; required = $false; default = $null; type = [float]; }, # Pro
+                @{ name = "workspace_id"; required = $true; default = $null; type = [int]; },
+                @{ name = "group_id"; required = $true; default = $null; type = [int]; },
+                @{ name = "server_deleted_at"; required = $true; default = $null; type = [string]; },
+                @{ name = "archived"; required = $true; default = $null; type = [boolean]; }
             );
         };
 
@@ -75,8 +83,11 @@
             DocUrl = "";
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
-                @{ name = "wid"; required = $true; default = $null; type = [long]; },
-                @{ name = "name"; required = $true; default = $null; type = [string]; }
+               # @{ name = "wid"; required = $true; default = $null; type = [long]; },
+                @{ name = "workspace_id"; required = $true; default = $null; type = [int]; },
+                @{ name = "name"; required = $true; default = $null; type = [string]; },
+                @{ name = "deleted_at"; required = $false; default = $null; type = [datetime]; }
+                @{ name = "at"; required = $false; default = $null; type = [datetime]; }
             );
         };
 
@@ -86,12 +97,17 @@
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
                 @{ name = "name"; required = $true; default = $null; type = [string]; },
-                @{ name = "pid"; required = $true; default = $null; type = [long]; },
-                @{ name = "wid"; required = $true; default = $null; type = [long]; },
-                @{ name = "uid"; required = $true; default = $null; type = [long]; },
+           #     @{ name = "pid"; required = $true; default = $null; type = [long]; },
+           #     @{ name = "wid"; required = $true; default = $null; type = [long]; },
+                @{ name = "workspace_id"; required = $true; default = $null; type = [int]; },
+                @{ name = "project_id"; required = $true; default = $null; type = [int]; },
+                @{ name = "user_id"; required = $true; default = $null; type = [int]; },
+              #  @{ name = "uid"; required = $true; default = $null; type = [long]; },
                 @{ name = "estimated_seconds"; required = $true; default = $null; type = [long]; },
                 @{ name = "active"; required = $true; default = $true; type = [bool]; },
+                @{ name = "recurring"; required = $false; default = $null; type = [bool]; },
                 @{ name = "tracked_seconds"; required = $false; default = $null; type = [long]; },
+                @{ name = "server_deleted_at"; required = $true; default = $null; type = [string]; },
                 @{ name = "at"; required = $true; default = $null; type = [datetime]; }
             );
         };
@@ -102,18 +118,24 @@
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
                 @{ name = "description"; required = $false; default = $null; type = [string]; },
-                @{ name = "wid"; required = $true; default = $null; type = [long]; }, # special case, req if pid and tid null
-                @{ name = "pid"; required = $false; default = $null; type = [long]; },
+           #    @{ name = "wid"; required = $true; default = $null; type = [long]; }, # special case, req if pid and tid null
+                @{ name = "workspace_id"; required = $true; default = $null; type = [long]; },
+                @{ name = "user_id"; required = $true; default = $null; type = [long]; },
+            #    @{ name = "pid"; required = $false; default = $null; type = [long]; },
+                @{ name = "project_id"; required = $false; default = $null; type = [long]; },
                 @{ name = "tid"; required = $false; default = $null; type = [long]; },
+                @{ name = "task_id"; required = $false; default = $null; type = [long]; },
+                @{ name = "server_deleted_at"; required = $true; default = $null; type = [string]; },
                 @{ name = "billable"; required = $false; default = $null; type = [bool]; },
                 @{ name = "start"; required = $true; default = $null; type = [datetime]; },
                 @{ name = "stop"; required = $false; default = $null; type = [datetime]; },
                 @{ name = "duration"; required = $true; default = $null; type = [long]; }, # If currently running, its negative.
                 @{ name = "created_with"; required = $true; default = "PSToggl"; type = [string]; },
+                @{ name = "tag_ids"; required = $false; default = $null; type = [long]; },
                 @{ name = "tags"; required = $false; default = $null; type = [string[]]; },
                 @{ name = "duronly"; required = $false; default = $false; type = [bool]; },
                 @{ name = "at"; required = $true; default = $null; type = [datetime]; }
-            );
+                );
         };
 
         User = @{
@@ -122,7 +144,8 @@
             Fields = @(
                 @{ name = "id"; required = $false; default = $null; type = [long]; },
                 @{ name = "api_token"; required = $true; default = $null; type = [string]; },
-                @{ name = "default_wid"; required = $true; default = $null; type = [long]; },
+            #    @{ name = "default_wid"; required = $true; default = $null; type = [long]; },
+                @{ name = "default_workspace_id"; required = $true; default = $null; type = [long]; },
                 @{ name = "email"; required = $false; default = $null; type = [string]; },
                 @{ name = "fullname"; required = $true; default = $null; type = [string]; },
                 @{ name = "jquery_timeofday_format"; required = $false; default = $null; type = [string]; },
@@ -134,7 +157,9 @@
                 @{ name = "language"; required = $false; default = $null; type = [string]; },
                 @{ name = "image_url"; required = $false; default = $null; type = [string]; },
                 @{ name = "sidebar_piechart"; required = $false; default = $null; type = [bool]; },
-                @{ name = "at"; required = $true; default = $null; type = [datetime]; },
+                @{ name = "country_id"; required = $false; default = $null; type = [int]; },
+                @{ name = "updated_at"; required = $true; default = $null; type = [datetime]; },
+                @{ name = "at"; required = $true; default = $null; type = [datetime]; }
                 ####
                 # @{ name = "new_blog_post"; required = $false; default = $null; type = [psobject]; },
                 ####
@@ -159,6 +184,7 @@
                 @{ name = "name"; required = $true; default = $null; type = [string]; },
                 @{ name = "premium"; required = $true; default = $null; type = [bool]; },
                 @{ name = "admin"; required = $true; default = $null; type = [bool]; },
+                @{ name = "admins"; required = $true; default = $null; type = [string[]]; },
                 @{ name = "default_hourly_rate"; required = $false; default = $null; type = [float]; },
                 @{ name = "default_currency"; required = $true; default = $null; type = [string]; },
                 @{ name = "only_admins_may_create_projects"; required = $true; default = $null; type = [bool]; },

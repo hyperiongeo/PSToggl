@@ -105,7 +105,7 @@ function New-TogglProject {
         Write-Verbose "Validating Project..."
         $item | ConvertTo-TogglProject | Write-Verbose
         Write-Debug "Fire in the Hole!"
-        $result = Invoke-TogglMethod -UrlSuffix "projects" -InputObject @{project = $item} -Method POST
+        $result = Invoke-TogglMethod -UrlSuffix "workspaces/$($Workspace)/projects" -InputObject @{project = $item} -Method POST
         if ($result.data) {
             $result.data | ConvertTo-TogglProject
         } else {
